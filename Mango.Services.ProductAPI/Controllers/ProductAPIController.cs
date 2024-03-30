@@ -4,6 +4,8 @@ using Mango.Services.ProductAPI.Models;
 using Mango.Services.ProductAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Polly.CircuitBreaker;
+using System.Net.Http;
 
 namespace Mango.Services.ProductAPI.Controllers
 {
@@ -14,12 +16,16 @@ namespace Mango.Services.ProductAPI.Controllers
         private readonly AppDbContext _db;
         private ResponseDto _response;
         private IMapper _mapper;
+     //   private readonly IHttpClientFactory _httpClientFactory;
 
-        public ProductAPIController(AppDbContext db, IMapper mapper)
+
+        public ProductAPIController(AppDbContext db, IMapper mapper/*, IHttpClientFactory httpClientFactory*/)
         {
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
+       //     _httpClientFactory=httpClientFactory;
+
         }
 
         [HttpGet]
@@ -29,6 +35,7 @@ namespace Mango.Services.ProductAPI.Controllers
             {
                 IEnumerable<Product> objList = _db.Products.ToList();
                 _response.Result = _mapper.Map<IEnumerable<ProductDto>>(objList);
+
             }
             catch (Exception ex)
             {
@@ -36,7 +43,48 @@ namespace Mango.Services.ProductAPI.Controllers
                 _response.Message = ex.Message;
             }
             return _response;
+            //  return StatusCode(500);
+
+            // return StatusCode(500);
         }
+
+
+
+        //[HttpGet]
+        //public async Task<ActionResult> Get()
+        //{
+        //    try
+        //    {
+        //        var client = _httpClientFactory.CreateClient("errorAPIClient");
+
+        //        // Make a request using HttpClient
+        //        var response = await client.GetAsync("api/products1");
+
+        //        // Check if the request was successful
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            // Parse and return response if needed
+        //            string responseData = await response.Content.ReadAsStringAsync();
+        //            return Ok(responseData);
+        //        }
+        //        else
+        //        {
+        //            // Handle unsuccessful response
+        //            return StatusCode((int)response.StatusCode);
+        //        }
+        //    }
+        //    catch (BrokenCircuitException)
+        //    {
+        //        // Circuit breaker is open, handle the error
+        //        return StatusCode(503, "Circuit is open");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle other exceptions
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
+
 
         [HttpGet]
         [Route("{id:int}")]

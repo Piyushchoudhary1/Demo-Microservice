@@ -1,7 +1,9 @@
+using Mango.Web;
 using Mango.Web.Service;
 using Mango.Web.Service.IService;
 using Mango.Web.Utility;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,12 @@ SD.OrderAPIBase = builder.Configuration["ServiceUrls:OrderAPI"];
 SD.ShoppingCartAPIBase= builder.Configuration["ServiceUrls:ShoppingCartAPI"];
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
+//builder.Services.AddHttpClient("errorAPIClient", c =>
+//{
+//    c.BaseAddress = new Uri("https://localhost:44395");
+//}).AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(30)));
+
+
 builder.Services.AddHttpClient<ICouponService, CouponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddHttpClient<IProductService, ProductService>();

@@ -2,7 +2,7 @@
 
 
   "Routes": [
-    //"ProductAPI": "https://localhost:7000",
+    //"ProductAPI":
     {
       "DownstreamPathTemplate": "/api/product",
       "DownstreamScheme": "https",
@@ -13,7 +13,12 @@
         }
       ],
       "UpstreamPathTemplate": "/api/product",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 30,
+        "TimeoutValue": 5000 // Adjust as needed
+      }
     },
     {
       "DownstreamPathTemplate": "/api/product/{id}",
@@ -46,7 +51,7 @@
       }
     },
 
-    //"CouponAPI": "https://localhost:7001",
+    //"CouponAPI": 
     {
       "DownstreamPathTemplate": "/api/coupon",
       "DownstreamScheme": "https",
@@ -102,7 +107,7 @@
       }
     },
 
-    //"ShoppingCartAPI": "https://localhost:7003",
+    //"ShoppingCartAPI":
     {
       "DownstreamPathTemplate": "/api/cart/GetCart/{id}",
       "DownstreamScheme": "https",
@@ -179,7 +184,7 @@
       }
     },
 
-    //"OrderAPI": "https://localhost:7004",
+    //"OrderAPI":
     {
       "DownstreamPathTemplate": "/api/order/GetOrders?userId={id}",
       "DownstreamScheme": "https",
@@ -240,36 +245,7 @@
         "AuthenticationProviderKey": "Bearer"
       }
     },
-    //{
-    //  "DownstreamPathTemplate": "/api/order/ValidateStripeSession",
-    //  "DownstreamScheme": "https",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 44393
-    //    }
-    //  ],
-    //  "UpstreamPathTemplate": "/api/order/ValidateStripeSession",
-    //  "UpstreamHttpMethod": [ "POST" ],
-    //  "AuthenticationOptions": {
-    //    "AuthenticationProviderKey": "Bearer"
-    //  }
-    //},
-    //{
-    //  "DownstreamPathTemplate": "/api/order/CreateStripeSession",
-    //  "DownstreamScheme": "https",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 7004
-    //    }
-    //  ],
-    //  "UpstreamPathTemplate": "/api/order/CreateStripeSession",
-    //  "UpstreamHttpMethod": [ "POST" ],
-    //  "AuthenticationOptions": {
-    //    "AuthenticationProviderKey": "Bearer"
-    //  }
-    //},
+
     {
       "DownstreamPathTemplate": "/api/order/CreateOrder",
       "DownstreamScheme": "https",

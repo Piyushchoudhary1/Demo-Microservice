@@ -2,6 +2,7 @@
 using Mango.Web.Models.Dto;
 using Mango.Web.Service.IService;
 using Mango.Web.Utility;
+using Polly.CircuitBreaker;
 
 namespace Mango.Web.Service
 {
@@ -34,6 +35,7 @@ namespace Mango.Web.Service
         }
 
         public async Task<ResponseDto?> GetAllProductsAsync()
+
         {
             return await _baseService.SendAsync(new RequestDto()
             {
