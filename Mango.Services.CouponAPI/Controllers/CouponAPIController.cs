@@ -93,7 +93,7 @@ namespace Mango.Services.CouponAPI.Controllers
 			return _response;
 		}
         [HttpPost]
-		[Authorize(Roles ="TestTest")]
+	//	[Authorize(Roles ="TestTest")]
         public ResponseDto Post([FromBody] CouponDto couponDto)
         {
             try
@@ -147,3 +147,4 @@ namespace Mango.Services.CouponAPI.Controllers
 		}
 	}
 }
+
