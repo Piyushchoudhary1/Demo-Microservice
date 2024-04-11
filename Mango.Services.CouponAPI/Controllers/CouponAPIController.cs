@@ -43,7 +43,7 @@ namespace Mango.Services.CouponAPI.Controllers
   //          return _response;
   //      }
 
-		[HttpGet]
+		[HttpGet("GetAllCoupons")]
 		public ResponseDto Get()
 		{
 			try
@@ -92,8 +92,41 @@ namespace Mango.Services.CouponAPI.Controllers
 			}
 			return _response;
 		}
-        [HttpPost]
-	//	[Authorize(Roles ="TestTest")]
+        //[HttpPost]
+        //public ResponseDto Post([FromBody] CouponDto couponDto)
+        //{
+        //    try
+        //    {
+        //        Coupon obj = _mapper.Map<Coupon>(couponDto);
+        //        _db.Coupons.Add(obj);
+        //        _db.SaveChanges();
+
+
+
+        //        //var options = new Stripe.CouponCreateOptions
+        //        //{
+        //        //    AmountOff = (long)(couponDto.DiscountAmount * 100),
+        //        //    Name = couponDto.CouponCode,
+        //        //    Currency = "usd",
+        //        //    Id = couponDto.CouponCode,
+        //        //};
+        //        //var service = new Stripe.CouponService();
+        //        //service.Create(options);
+
+
+        //        _response.Result = _mapper.Map<CouponDto>(obj);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.IsSuccess = false;
+        //        _response.Message = ex.Message;
+        //    }
+        //    return _response;
+        //}
+
+
+        [HttpPost("CreateCoupon")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Post([FromBody] CouponDto couponDto)
         {
             try
@@ -104,15 +137,15 @@ namespace Mango.Services.CouponAPI.Controllers
 
 
 
-                //var options = new Stripe.CouponCreateOptions
-                //{
-                //    AmountOff = (long)(couponDto.DiscountAmount * 100),
-                //    Name = couponDto.CouponCode,
-                //    Currency = "usd",
-                //    Id = couponDto.CouponCode,
-                //};
-                //var service = new Stripe.CouponService();
-                //service.Create(options);
+                var options = new Stripe.CouponCreateOptions
+                {
+                    AmountOff = (long)(couponDto.DiscountAmount*100),
+                    Name = couponDto.CouponCode,
+                    Currency="inr",
+                    Id=couponDto.CouponCode,
+                };
+                var service = new Stripe.CouponService();
+                service.Create(options);
 
 
                 _response.Result = _mapper.Map<CouponDto>(obj);
@@ -125,7 +158,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
 
-		[HttpDelete]
+        [HttpDelete]
 		[Route("{id:int}")]
 	//	[Authorize(Roles = "ADMIN")]
 		public ResponseDto Delete(int id)
@@ -136,8 +169,10 @@ namespace Mango.Services.CouponAPI.Controllers
 				_db.Coupons.Remove(obj);
 				_db.SaveChanges();
 
+                var service = new Stripe.CouponService();
+                service.Delete(obj.CouponCode);
 
-			}
+            }
 			catch (Exception ex)
 			{
 				_response.IsSuccess = false;

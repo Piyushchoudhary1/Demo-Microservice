@@ -21,7 +21,7 @@ namespace Mango.Web.Service
 
                 ApiType = Utility.SD.ApiType.POST,
                 Data = couponDto,
-                Url = SD.CouponAPIBase + "/api/coupon/"
+                Url = SD.CouponAPIBase + "/api/coupon/CreateCoupon"
             });
         }
 
@@ -44,7 +44,7 @@ namespace Mango.Web.Service
 
 
                 ApiType = Utility.SD.ApiType.GET,
-                Url = SD.CouponAPIBase + "/api/coupon/"
+                Url = SD.CouponAPIBase + "/api/coupon/GetAllCoupons"
             });
         }
 
