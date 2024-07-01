@@ -44,6 +44,7 @@ namespace Mango.Services.CouponAPI.Controllers
   //      }
 
 		[HttpGet("GetAllCoupons")]
+		[Authorize]
 		public ResponseDto Get()
 		{
 			try
