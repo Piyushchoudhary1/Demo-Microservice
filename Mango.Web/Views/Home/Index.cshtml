@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProductDto>
 
-<form>
-    <div class="container row">
+<form class="form-index container">
+    @* <div class="container row">
         @foreach (var product in Model)
         {
             <div class="col-12 col-md-6 col-lg-4">
@@ -25,6 +25,37 @@
                     </div>
                 </div>
             </div>
+
+
+        }
+    </div> *@
+
+    @* MODIFIED BY ME *@
+
+    <div class="fig--3 container">
+        @foreach (var product in Model)
+        {
+            <div class="el-common">
+                <div class="img"><img src="@product.ImageUrl" alt="product-img" /></div>
+                <div class="fig--3-description">
+                    <p class="product-name">@product.Name</p>
+                    <p class="category-name fig-content-common highlight-grey--1">
+                        @product.CategoryName
+                    </p>
+                    <p class="fig--3-text">
+                        @Html.Raw(product.Description)
+                    </p>
+                    <p class="cost">
+                        <span>&#8377; @product.Price INR</span>
+                    </p>
+                </div>
+                <p class="details--helper">
+                    <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="details">Details</a>
+                </p>
+            </div>
+
+
         }
     </div>
+
 </form>

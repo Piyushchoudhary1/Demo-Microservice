@@ -1,35 +1,40 @@
 ﻿@model RegistrationRequestDto
 
 <form method="post">
-    <div class="container border p-4">
-        <div class="row text-center p-3">
-            <h1>Register</h1>
+    <div class="container border login-container">
+        <div class="row text-center p-3 ">
+            <h2 class="login-header">Register</h2>
+            <p class="line"></p>
         </div>
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Email" class="form-control" placeholder="Email..." />
+                <p class="label">Email address</p>
+                <input asp-for="Email" class="form-control input" placeholder="example@gmail.com" />
                 <span asp-validation-for="Email" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Name" class="form-control" placeholder="Name..." />
+                <p class="label">Name</p>
+                <input asp-for="Name" class="form-control input" placeholder="example" />
                 <span asp-validation-for="Name" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number..." />
+                <p class="label">Phone number</p>
+                <input asp-for="PhoneNumber" class="form-control input" placeholder="9987898789" />
                 <span asp-validation-for="PhoneNumber" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Password" class="form-control" placeholder="Password..." />
+                <p class="label">Password</p>
+                <input asp-for="Password" class="form-control input" placeholder="Example@123" />
                 <span asp-validation-for="Password" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
+                <select asp-for="Role" class="form-select input" asp-items="@ViewBag.RoleList">
                     <option disabled selected>--Select Role--</option>
                 </select>
             </div>
 
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <button type="submit" class="form-control btn btn-success" value="Submit">Register</button>
+                <button type="submit" class="form-control btn btn-success button-login" value="Submit">Register</button>
             </div>
         </div>
     </div>

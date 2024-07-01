@@ -1,61 +1,59 @@
 ﻿@model ProductDto
 
 <form asp-action="ProductCreate" enctype="multipart/form-data">
-    <br />
-    <div class="container border p-3">
-        <h1 class="text-white text-center">Create Product</h1>
+    <div class="container border p-3 login-container product-create">
+        <h1 class="text-white text-center login-header">Create Product</h1>
 
-        <hr />
         <div class="row">
+            <div class="label-input-flex">
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;"> Name</label>
+                <label class="control-label pt-2 label coupon-label label-inline" > Name</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control input" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">Category Name</label>
+                <label class="control-label pt-2 label coupon-label">Category Name</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="CategoryName" class="form-control" />
+                <input asp-for="CategoryName" class="form-control input" />
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">Description</label>
+                <label class="control-label pt-2 label coupon-label" >Description</label>
             </div>
             <div class="col-10 pb-3">
-                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <textarea asp-for="Description" class="form-control input" rows="5"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">Price</label>
+                <label class="control-label pt-2 label coupon-label">Price</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control input" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">ImageUrl</label>
+                <label class="control-label pt-2 label coupon-label" >ImageUrl</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Image" class="form-control" />
-                <input asp-for="ImageUrl" hidden class="form-control" />
+                <input asp-for="Image" class="form-control input input-file" />
+                <input asp-for="ImageUrl" hidden class="form-control input" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
+            <div class="adjacent-buttons">
             <div class="col-5 offset-2">
 
-                <a asp-action="ProductIndex" class="btn-primary btn form-control ">Back to List</a>
+                <a asp-action="ProductIndex" class="btn-primary btn form-control button-sub">Back to List</a>
             </div>
             <div class="col-5">
-                <input type="submit" value="Create" class="btn btn-success form-control" />
+                <input type="submit" value="Create" class="btn btn-success form-control add-to-cart" style="border: none;" />
 
             </div>
-
-        </div>
-
-        <div>
+            </div>
         </div>
     </div>
 </form>

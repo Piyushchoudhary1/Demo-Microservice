@@ -1,24 +1,53 @@
 ﻿@model LoginRequestDto
 
 <form method="post">
-    <div class="container border p-4">
+    <div class="container border login-container">
         <div class="row text-center">
-            <h1>Login</h1>
+            <h2 class="login-header">Login</h2>
+            <p class="line"></p>
         </div>
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="UserName" class="form-control" placeholder="Username..."/>
+                
+                <p class="label">Email address</p>
+                <input asp-for="UserName" class="form-control input" placeholder="Username..."/><br />
                 <span asp-validation-for="UserName" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <input asp-for="Password" class="form-control" placeholder="Password..." />
+                <p class="label">Password</p>
+                <input asp-for="Password" class="form-control input" placeholder="Password..." /><br />
                 <span asp-validation-for="Password" class="text-danger" />
             </div>
             <div class="col-12 col-md-6 offset-md-3 pb-2">
-                <button type="submit" class="form-control btn btn-success" value="Submit">Login</button>
+                <button type="submit" class="form-control btn btn-success button-login" value="Submit">Login</button>
             </div>
         </div>
     </div>
+
+   @*  <div class="login-helper">
+        <section class="section-common section__login">
+            <h2 class="header">Login</h2>
+            <p class="line"></p>
+            <p class="label">Email address</p>
+
+            <input 
+                   class="input"
+                   asp-for="UserName"
+                   placeholder="example@gmail.com"
+                    />
+            <span asp-validation-for="UserName" class="text-danger" /><br />
+            <p class="label">Password</p>
+
+            <input 
+                   class="input"
+                   asp-for="Password"
+                   placeholder="Example@123"
+                    />
+            <span asp-validation-for="Password" class="text-danger" /><br />
+
+            <button type="submit" class="button" value="Submit">Login</button>
+        </section>
+    </div> *@
 </form>
 
 @section Scripts {

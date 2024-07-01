@@ -25,12 +25,12 @@
 
 
 
-<div class="card shadow border-0 mt-4">
-	<div class="card-header bg-secondary bg-gradient ml-0 py-3 d-flex justify-content-between">
+<div class="card shadow border-0 mt-4 manage-order container">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-3 d-flex justify-content-between manage-order-header">
 		<div class="row">
-				<h1 class="text-white">Order List</h1>
+				<h1 class="text-white label-order-list">Order List</h1>
 		</div>
-		<ul class="list-group list-group-horizontal-sm pt-2">
+		<ul class="list-group list-group-horizontal-sm pt-2 manage-order-header-list">
 			<a style="text-decoration:none" asp-controller="Order" asp-action="OrderIndex" asp-route-status="approved">
 				<li class="list-group-item @approved">Approved</li>
 			</a>
@@ -45,7 +45,7 @@
 			</a>
 		</ul>
 	</div>
-	<div class="card-body p-4">
+	<div class="card-body p-4 manage-order-main">
 		<table id="tblData" class="table table-bordered table-striped pt-3" style="width:100%">
 			<thead>
 				<tr>
